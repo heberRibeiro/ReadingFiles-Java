@@ -13,12 +13,8 @@ public class Main {
 		// String path = sc.next();
 		String path = "..\\readingFiles-java\\ArquivoLeitura.txt";
 
-		FileReader fr = null;
-		BufferedReader br = null;
-		try {
-
-			fr = new FileReader(path);
-			br = new BufferedReader(fr);
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
 			String conteudo = br.readLine();
 
@@ -29,19 +25,7 @@ public class Main {
 
 		} catch (IOException e) {
 			System.out.println("Erro: " + e.getMessage());
-		} finally {
-			try {
-				// Os recursos só podem ser fechados, se antes forem declarados
-				if (fr != null) {
-					fr.close();
-				}
-				if (br != null) {
-					br.close();
-				}
-			} catch (IOException e) {
-				System.out.println("Erro: " + e.getMessage());
-			}
-		}
+		} 
 		//sc.close();
 	}
 
